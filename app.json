@@ -16,18 +16,31 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.trasmaja.reworld"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.trasmaja.reworld"
     },
     "web": {
       "favicon": "./assets/favicon.png",
       "bundler": "metro"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9df73d3f-492e-4bf8-8807-4dd2152ef212"
+      }
+    },
+    "owner": "tech-challenge-reworld",
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/9df73d3f-492e-4bf8-8807-4dd2152ef212"
     }
-    
-  },
+  }
 }
