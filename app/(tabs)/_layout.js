@@ -15,6 +15,7 @@ export default () => {
                 tabBarActiveTintColor: '#568F6F',
                 tabBarInactiveTintColor: 'gray',
                 tabBarShowLabel: false,
+                headerShown: false,
             }} />
             <Tabs.Screen name="map" options={{
                 tabBarIcon: ({ focused, color, size }) => {
@@ -26,6 +27,7 @@ export default () => {
                 tabBarActiveTintColor: '#568F6F',
                 tabBarInactiveTintColor: 'gray',
                 tabBarShowLabel: false,
+                headerShown: false,
             }} />
             <Tabs.Screen name="profile" options={{
                 tabBarIcon: ({ focused, color, size }) => {
@@ -37,6 +39,7 @@ export default () => {
                 tabBarActiveTintColor: '#568F6F',
                 tabBarInactiveTintColor: 'gray',
                 tabBarShowLabel: false,
+                headerShown: false,
             }} />
         </Tabs>
     )
