@@ -10,15 +10,52 @@ import Animated, {
     useAnimatedStyle,
     Easing,
 } from 'react-native-reanimated';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-function collectReward(router) {
+function collectReward(router, store) {
     Alert.alert("Reward Collcetd", "Discount code added to your profile page", [
         {
-            text: 'Take me there', onPress: () => {
-                router.back()
-                router.push({
-                    pathname: '/profile/'
-                });
+            text: 'Take me there', onPress: async () => {
+                try {
+                    let jsonValue = await AsyncStorage.getItem('my-key');
+                    jsonValue = jsonValue != null ? JSON.parse(jsonValue) : null;
+                    if (jsonValue !== null) {
+                        // value previously stored
+                        jsonValue["data"].push(store)
+                        const newjsonValue = JSON.stringify(jsonValue);
+                        await AsyncStorage.setItem('my-key', newjsonValue);
+                        console.log("dadadada")
+                        console.log(newjsonValue["data"])
+                        router.back()
+                        router.push({
+                            pathname: '/profile/',
+                           // params: { fromReward: true },
+                           params: { data: jsonValue["data"] },
+                        });
+                    } else {
+                        // First time?
+                        try {
+                            const value = { data: [store] }
+                            const jsonValue = JSON.stringify(value);
+                            await AsyncStorage.setItem('my-key', jsonValue);
+                            router.back()
+                            router.push({
+                                pathname: '/profile/',
+                                params: { data: value["data"] },
+                            });
+                        } catch (e) {
+                            // error
+                            alert("error in first time")
+                        }
+                    }
+                } catch (e) {
+                    // error reading value
+                    console.log(e)
+                    alert("error in reading value")
+                }
+
+
+
             }
         },
     ],
@@ -71,7 +108,7 @@ export default function Home() {
             <Text style={{ fontSize: 40, }}>{params.store}</Text>
             <Animated.View style={[{ flex: 1, justifyContent: "center", alignItems: "center" }, style]}>
                 <Text style={{ fontSize: 20, padding: 20, marginTop: 40 }}>Great work! {params.store} thanks you for dropping of your clothes for collection. As a thanks they offer you a 10 % discount code.</Text>
-                <Button onPress={() => collectReward(router)} title="Collect Reward" />
+                <Button onPress={() => collectReward(router, params.store)} title="Collect Reward" />
             </Animated.View>
             <StatusBar style="auto" />
         </View>
