@@ -5,8 +5,8 @@ import { Stack } from "expo-router";
 export default () => {
     return (
         <Tabs>
-            <Tabs.Screen  name="index" options={{
-                tabBarIcon: ({focused, color, size }) => {
+            <Tabs.Screen name="index" options={{
+                tabBarIcon: ({ focused, color, size }) => {
                     let iconName = focused
                         ? 'home'
                         : 'home-outline';
@@ -22,6 +22,18 @@ export default () => {
                     let iconName = focused
                         ? 'map'
                         : 'map-outline';
+                    return <Ionicons name={iconName} size={size} color={color} />;
+                },
+                tabBarActiveTintColor: '#568F6F',
+                tabBarInactiveTintColor: 'gray',
+                tabBarShowLabel: false,
+                headerShown: false,
+            }} />
+            <Tabs.Screen name="checkIn" options={{
+                tabBarIcon: ({ focused, color, size }) => {
+                    let iconName = focused
+                        ? 'qr-code'
+                        : 'qr-code-outline';
                     return <Ionicons name={iconName} size={size} color={color} />;
                 },
                 tabBarActiveTintColor: '#568F6F',

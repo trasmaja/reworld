@@ -40,6 +40,20 @@
     },
     "updates": {
       "url": "https://u.expo.dev/9df73d3f-492e-4bf8-8807-4dd2152ef212"
-    }
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
+        }
+      ],
+      [
+        "expo-barcode-scanner",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access camera."
+        }
+      ]
+    ]
   }
 }
