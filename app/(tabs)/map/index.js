@@ -34,7 +34,7 @@ export default function Home() {
         button = <TouchableOpacity onPress={() => {
             router.push("/map/qualitySelection");
         }} activeOpacity={0.9} style={styles.overlay}>
-            <Text style={styles.text}>Help me</Text>
+            <Text style={styles.text}>Filter</Text>
         </TouchableOpacity>
         markerData = data
     } else {
@@ -42,7 +42,7 @@ export default function Home() {
             setFilter(null)
             router.replace('/map')
         }} activeOpacity={0.9} style={styles.overlay}>
-            <Text style={styles.text}>Clear selection</Text>
+            <Text style={styles.text}>Clear filter</Text>
         </TouchableOpacity>
         markerData = data.filter(obj => {
             console.log(obj.accept.includes(filter))
@@ -70,13 +70,13 @@ export default function Home() {
                     >
                         <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                             <Ionicons name={"location"} size={42} color={marker.color} />
-                            <Text style={{ color: marker.color }}>{marker.title}</Text>
+                            <Text style={{ color: "#000", fontWeight: "bold" }}>{marker.title}</Text>
                         </View>
                         <Callout onPress={() => getDirections(marker.latlng)}>
-                            <View style={{width: 100, height: "100%"}}>
-                                <Text>{marker.title}</Text>
-                                <Text>{marker.description}</Text>
-                                <Text>Get directions</Text>
+                            <View style={{width: 150, height: "100%"}}>
+                                <Text style={{fontSize: 18, fontWeight: "bold"}}>{marker.title}</Text>
+                                <Text style={{fontSize: 14}}>{marker.description}</Text>
+                                <Text style={{color: "#0E7AFE", marginTop: 10, fontSize: 16, fontWeight: "bold"}}>Get directions</Text>
                             </View>
                         </Callout>
                     </Marker>
@@ -94,7 +94,7 @@ const data = [
         index: 1,
         latlng: { latitude: 48.137154, longitude: 11.576124 },
         title: "H&M",
-        description: "H&M - Accepting XYZ.",
+        description: "Accepting: ripped/stained",
         color: "#02BB86",
         accept: ["ripped/stained"]
     },
@@ -102,7 +102,7 @@ const data = [
         index: 2,
         latlng: { latitude: 48.157154, longitude: 11.556124 },
         title: "Zara",
-        description: "Zara - Accepting XYZ.",
+        description: "Accepting: usable, ripped/stained, and unusable.",
         color: "#02BB86",
         accept: ['usable', "ripped/stained", "unusable"]
     },
@@ -110,7 +110,7 @@ const data = [
         index: 3,
         latlng: { latitude: 48.127154, longitude: 11.506124 },
         title: "Adidas",
-        description: "Adidas - Accepting XYZ.",
+        description: "Accepting: usable",
         color: "#02BB86",
         accept: ['usable']
     },
@@ -167,239 +167,73 @@ const styles = StyleSheet.create({
 
 const generatedMapStyle = [
     {
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#212121"
-            }
-        ]
+      "featureType": "administrative.land_parcel",
+      "elementType": "labels",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
     },
     {
-        "elementType": "labels.icon",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
+      "featureType": "poi",
+      "elementType": "labels.text",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
     },
     {
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#757575"
-            }
-        ]
+      "featureType": "poi.business",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
     },
     {
-        "elementType": "labels.text.stroke",
-        "stylers": [
-            {
-                "color": "#212121"
-            }
-        ]
+      "featureType": "poi.park",
+      "elementType": "labels.text",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
     },
     {
-        "featureType": "administrative",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#757575"
-            }
-        ]
+      "featureType": "road.arterial",
+      "elementType": "labels",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
     },
     {
-        "featureType": "administrative.country",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#9e9e9e"
-            }
-        ]
+      "featureType": "road.highway",
+      "elementType": "labels",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
     },
     {
-        "featureType": "administrative.land_parcel",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
+      "featureType": "road.local",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
     },
     {
-        "featureType": "administrative.land_parcel",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "administrative.locality",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#bdbdbd"
-            }
-        ]
-    },
-    {
-        "featureType": "poi",
-        "elementType": "labels.text",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "poi",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#757575"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.business",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.park",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#181818"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.park",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#616161"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.park",
-        "elementType": "labels.text.stroke",
-        "stylers": [
-            {
-                "color": "#1b1b1b"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "color": "#2c2c2c"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "labels.icon",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#8a8a8a"
-            }
-        ]
-    },
-    {
-        "featureType": "road.arterial",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#373737"
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#3c3c3c"
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway.controlled_access",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#4e4e4e"
-            }
-        ]
-    },
-    {
-        "featureType": "road.local",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "road.local",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#616161"
-            }
-        ]
-    },
-    {
-        "featureType": "transit",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "transit",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#757575"
-            }
-        ]
-    },
-    {
-        "featureType": "water",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#000000"
-            }
-        ]
-    },
-    {
-        "featureType": "water",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#3d3d3d"
-            }
-        ]
+      "featureType": "road.local",
+      "elementType": "labels",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
     }
-]
+  ]
