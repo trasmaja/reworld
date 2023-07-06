@@ -16,7 +16,7 @@ const copyToClipboard = async (id, animation, setAnimationShow) => {
   animation.current.play();
   setTimeout(() => {
     setAnimationShow(false)
-  },1500)
+  }, 1500)
 };
 
 function makeid(length) {
@@ -115,22 +115,25 @@ export default function Home() {
             <Text style={{ fontSize: 14, marginLeft: 130, marginTop: -50 }}>Joined July 2023</Text>
           </View>
         </View>
-        <Stack.Screen options={{ title: "Profile", headerTintColor: "#568F6F" }} />
-        {
-          data["data"].map((name, index) => (
-            <TouchableOpacity onPress={() => copyToClipboard(index < 30 ? ids[index] : makeid(8), animation, setAnimationShow)} style={styles.rewardBox} key={index}>
-              <Text style={styles.rewardTitle}>{name} - 10 % Discount</Text>
-              <Text style={styles.rewardRed}>Code: {index < 30 ? ids[index] : makeid(8)}</Text>
-              <Text style={styles.rewardEx}>Expires: 2023-12-31</Text>
-              <Text style={styles.clickCopy}>Click to copy</Text>
-            </TouchableOpacity>
-          ))
-        }
+        <View style={{backgroundColor: "#f4f4f4", minHeight: "100%"}}>
+          <Text style={{fontSize: 20, fontWeight: "bold", margin: 15, marginBottom: 0}}>Rewards</Text>
+          <Stack.Screen options={{ title: "Profile", headerTintColor: "#568F6F" }} />
+          {
+            data["data"].map((name, index) => (
+              <TouchableOpacity onPress={() => copyToClipboard(index < 30 ? ids[index] : makeid(8), animation, setAnimationShow)} style={styles.rewardBox} key={index}>
+                <Text style={styles.rewardTitle}>{name} - 10 % Discount</Text>
+                <Text style={styles.rewardRed}>Code: {index < 30 ? ids[index] : makeid(8)}</Text>
+                <Text style={styles.rewardEx}>Expires: 2023-12-31</Text>
+                <Text style={styles.clickCopy}>Click to copy</Text>
+              </TouchableOpacity>
+            ))
+          }
+        </View>
         <StatusBar style="auto" />
         <TouchableOpacity onPress={() => { resetRewards() }} style={{ width: "100%", height: 50, }}>
         </TouchableOpacity>
       </ScrollView >
-      <View pointerEvents="none" style={{height: 100, width: "100%", position: "absolute", bottom: 0, left: 0, justifyContent: "center", alignItems: "center"}}>
+      <View pointerEvents="none" style={{ height: 100, width: "100%", position: "absolute", bottom: 0, left: 0, justifyContent: "center", alignItems: "center" }}>
         {animationShow && <LottieView
           loop={false}
           autoPlay={false}
