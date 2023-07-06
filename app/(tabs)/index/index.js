@@ -1,12 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { Link, Stack } from "expo-router";
 
 export default function Home() {
   return (
     <View style={styles.container}>
       <Stack.Screen options={{ title: "Home", headerTintColor: "#568F6F" }} />
-      <Text>This is a new ghome!</Text>
+      <Image
+        style={{ height: "100%", width: "100%"}}
+        source={require('./home.png')}
+      />
       <StatusBar style="auto" />
     </View>
   );
@@ -20,3 +23,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
