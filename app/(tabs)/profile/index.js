@@ -115,8 +115,8 @@ export default function Home() {
             <Text style={{ fontSize: 14, marginLeft: 130, marginTop: -50 }}>Joined July 2023</Text>
           </View>
         </View>
-        <View style={{backgroundColor: "#f4f4f4", minHeight: "100%"}}>
-          <Text style={{fontSize: 20, fontWeight: "bold", margin: 15, marginBottom: 0}}>Rewards</Text>
+        <View style={{ backgroundColor: "#f4f4f4", minHeight: "100%" }}>
+          <Text style={{ fontSize: 20, fontWeight: "bold", margin: 15, marginBottom: 0 }}>Rewards</Text>
           <Stack.Screen options={{ title: "Profile", headerTintColor: "#568F6F" }} />
           {
             data["data"].map((name, index) => (
@@ -128,10 +128,11 @@ export default function Home() {
               </TouchableOpacity>
             ))
           }
+          <TouchableOpacity onPress={() => { resetRewards() }} style={{ width: "100%", height: 50, zIndex: 100 }}>
+          </TouchableOpacity>
         </View>
         <StatusBar style="auto" />
-        <TouchableOpacity onPress={() => { resetRewards() }} style={{ width: "100%", height: 50, }}>
-        </TouchableOpacity>
+
       </ScrollView >
       <View pointerEvents="none" style={{ height: 100, width: "100%", position: "absolute", bottom: 0, left: 0, justifyContent: "center", alignItems: "center" }}>
         {animationShow && <LottieView
