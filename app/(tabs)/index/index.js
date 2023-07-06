@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <Stack.Screen options={{ title: "Home", headerTintColor: "#568F6F" }} />
-      <Text>Home!</Text>
+      <Text>This is a new ghome!</Text>
       <StatusBar style="auto" />
     </View>
   );
